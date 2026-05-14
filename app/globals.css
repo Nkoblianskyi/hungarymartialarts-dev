@@ -1,0 +1,109 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Core palette: off-white bg, near-black text, crimson accent, warm gray neutral */
+  --background: oklch(0.98 0.005 60);
+  --foreground: oklch(0.12 0.01 30);
+  --card: oklch(0.96 0.005 60);
+  --card-foreground: oklch(0.12 0.01 30);
+  --popover: oklch(0.98 0.005 60);
+  --popover-foreground: oklch(0.12 0.01 30);
+  --primary: oklch(0.12 0.01 30);
+  --primary-foreground: oklch(0.98 0.005 60);
+  --secondary: oklch(0.93 0.008 50);
+  --secondary-foreground: oklch(0.12 0.01 30);
+  --muted: oklch(0.93 0.008 50);
+  --muted-foreground: oklch(0.38 0.01 30);
+  /* Red crimson accent */
+  --accent: oklch(0.50 0.22 25);
+  --accent-foreground: oklch(0.98 0.005 60);
+  --destructive: oklch(0.50 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.88 0.006 50);
+  --input: oklch(0.88 0.006 50);
+  --ring: oklch(0.50 0.22 25);
+  --radius: 0rem;
+  /* brand red token */
+  --brand: oklch(0.50 0.22 25);
+  --brand-foreground: oklch(0.98 0.005 60);
+  --surface: oklch(0.12 0.01 30);
+  --surface-foreground: oklch(0.98 0.005 60);
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-barlow);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius));
+  --radius-md: calc(var(--radius));
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-barlow), system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 18s linear infinite;
+}
+
+/* Hover underline link */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
