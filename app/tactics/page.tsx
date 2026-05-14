@@ -87,6 +87,17 @@ A tsugi ashi (lépő lépés) a judo alapmozgása, amellyel az egyensúlybontás
   },
 ]
 
+const SPAN_PATTERN = [
+  "lg:col-span-12",
+  "lg:col-span-7",
+  "lg:col-span-5",
+  "lg:col-span-5",
+  "lg:col-span-7",
+  "lg:col-span-12",
+  "lg:col-span-7",
+  "lg:col-span-5",
+] as const
+
 export default function TacticsPage() {
   return (
     <div className="pt-10 md:pt-14">
@@ -120,11 +131,11 @@ export default function TacticsPage() {
       {/* Content */}
       <div className="bg-background py-16 md:py-24 px-6 md:px-10">
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 border border-border">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-0 border border-border">
             {sections.map((section, i) => (
               <article
                 key={section.title}
-                className={`lg:col-span-${i % 3 === 0 ? "12" : i % 3 === 1 ? "7" : "5"} border-b border-r border-border p-8 md:p-10 last:border-b-0 hover:bg-secondary transition-colors`}
+                className={`${SPAN_PATTERN[i % SPAN_PATTERN.length]} border-b border-border lg:border-r p-8 md:p-10 last:border-b-0 hover:bg-secondary transition-colors`}
               >
                 <span className="text-[9px] tracking-[0.4em] uppercase text-brand font-semibold mb-4 block">
                   {section.tag}
